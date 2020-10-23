@@ -49,6 +49,7 @@ function getRandomSelectForOne(array) {
 const AnimalImagePrinter = () => {
 	const [animal, dispatch] = useReducer(reducer, {image: '', loading: true})
 	const [duration, setDuration] = useState(5000)
+	const [durationUnSettled, setDurationUnSetteled] = useState(5000)
 
 	useEffect(()=>{
 		let tim = setInterval(()=>{
@@ -71,7 +72,18 @@ const AnimalImagePrinter = () => {
 	
 	return (
 		<>
-			<input value={duration} onChange={e=>setDuration(e.target.value)} />
+			<span>
+				<p>今の表示間隔は、「{duration}」です</p>
+				<input value={durationUnSettled} onChange={e=> {setDurationUnSetteled(e.target.value)}} />
+				<button onClick={()=>{
+					if (durationUnSettled < 2000) {
+						setDuration(2000)
+						setDurationUnSetteled(2000)
+					} else {
+						setDuration(durationUnSettled)
+					}
+				}}>決定</button>
+			</span>
 			{	animal.loading ?<h1>Loading...</h1>:
 				<>
 					<h1>{animal.image}</h1>
