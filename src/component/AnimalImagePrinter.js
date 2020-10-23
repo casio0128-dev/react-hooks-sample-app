@@ -35,7 +35,7 @@ const apis = [
 
 /**
  * getRandomSelectForOne(Array)
- * @return [index: int, apiPath: string]
+ * @return [index: int, value: string]
  */
 function getRandomSelectForOne(array) {
 	const index = Math.floor(Math.random() * Math.floor(array.length))	
