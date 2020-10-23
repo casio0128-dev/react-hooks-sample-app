@@ -26,12 +26,11 @@ const reducer = (state, action) => {
 	}
 }
 
-const animals = ["dog", "cat", "fox"]
-const apis = [
-	"https://dog.ceo/api/breeds/image/random",
-	"https://aws.random.cat/meow",
-	"https://randomfox.ca/floof/"
-]
+const animalApiMap = {
+	"dog": ["https://dog.ceo/api/breeds/image/random"],
+	"cat": ["https://aws.random.cat/meow"],
+	"fox": ["https://randomfox.ca/floof/"]
+}
 
 /**
  * getRandomSelectForOne(Array)
@@ -53,11 +52,13 @@ const AnimalImagePrinter = () => {
 
 	useEffect(()=>{
 		let tim = setInterval(()=>{
-			const [index, apiPath] = getRandomSelectForOne(apis)
+			const animalApiMapKeys = Object.keys(animalApiMap)
+			const [animalIndex, animal] = getRandomSelectForOne(animalApiMapKeys)
+			const [apiIndex, apiPath] = getRandomSelectForOne(animalApiMap[animal])
 
 			axios.get(apiPath).then(res => {
 				dispatch({
-					type: animals[index],
+					type: animal,
 					data: res.data,
 					loading: false
 				})
