@@ -5,21 +5,25 @@ const reducer = (state, action) => {
 	switch(action.type) {
 	case 'dog':
 		return {
+			kind: action.type,
 			image: action.data.message,
 			loading: action.loading
 		}
 	case 'cat':
 		return {
+			kind: action.type,
 			image: action.data.file,
 			loading: action.loading
 		}
 	case 'fox':
 		return {
+			kind: action.type,
 			image: action.data.image,
 			loading: action.loading
 		}
 	default:
 		return {
+			kind: action.type,
 			image: "",
 			loading: action.loading
 		}
@@ -53,12 +57,12 @@ const AnimalImagePrinter = () => {
 	useEffect(()=>{
 		let tim = setInterval(()=>{
 			const animalApiMapKeys = Object.keys(animalApiMap)
-			const [animalIndex, animal] = getRandomSelectForOne(animalApiMapKeys)
-			const [apiIndex, apiPath] = getRandomSelectForOne(animalApiMap[animal])
+			const [animalIndex, animalKind] = getRandomSelectForOne(animalApiMapKeys)
+			const [apiIndex, apiPath] = getRandomSelectForOne(animalApiMap[animalKind])
 
 			axios.get(apiPath).then(res => {
 				dispatch({
-					type: animal,
+					type: animalKind,
 					data: res.data,
 					loading: false
 				})
@@ -87,7 +91,7 @@ const AnimalImagePrinter = () => {
 			</span>
 			{	animal.loading ?<h1>Loading...</h1>:
 				<>
-					<h1>{animal.image}</h1>
+					<h1>{animal.kind}</h1>
 					<img src={animal.image} widh="400" height="400" />
 				</>
 			}
