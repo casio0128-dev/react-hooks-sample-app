@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 import axios from 'axios'
 
 const reducer = (state, action) => {
@@ -48,6 +48,7 @@ function getRandomSelectForOne(array) {
  */
 const AnimalImagePrinter = () => {
 	const [animal, dispatch] = useReducer(reducer, {image: '', loading: true})
+	const [duration, setDuration] = useState(5000)
 
 	useEffect(()=>{
 		let tim = setInterval(()=>{
@@ -61,15 +62,16 @@ const AnimalImagePrinter = () => {
 				})
 			})
 			dispatch({type: "", data: null, loading: true})
-		}, 5000)
+		}, duration)
 
 		return () => {
 			clearInterval(tim)
 		}
-	}, [])
+	}, [duration])
 	
 	return (
 		<>
+			<input value={duration} onChange={e=>setDuration(e.target.value)} />
 			{	animal.loading ?<h1>Loading...</h1>:
 				<>
 					<h1>{animal.image}</h1>
