@@ -57,8 +57,8 @@ const AnimalImagePrinter = () => {
 	useEffect(()=>{
 		let tim = setInterval(()=>{
 			const animalApiMapKeys = Object.keys(animalApiMap)
-			const [animalIndex, animalKind] = getRandomSelectForOne(animalApiMapKeys)
-			const [apiIndex, apiPath] = getRandomSelectForOne(animalApiMap[animalKind])
+			const [, animalKind] = getRandomSelectForOne(animalApiMapKeys)
+			const [, apiPath] = getRandomSelectForOne(animalApiMap[animalKind])
 
 			axios.get(apiPath).then(res => {
 				dispatch({
