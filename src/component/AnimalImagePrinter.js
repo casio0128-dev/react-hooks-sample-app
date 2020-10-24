@@ -17,31 +17,31 @@ import axios from 'axios'
  * }
 */
 const reducer = (state, action) => {
-	switch(action.type) {
-	case 'dog':
-		return {
-			kind: action.type,
-			image: action.data.message,
-			loading: action.loading
-		}
-	case 'cat':
-		return {
-			kind: action.type,
-			image: action.data.file,
-			loading: action.loading
-		}
-	case 'fox':
-		return {
-			kind: action.type,
-			image: action.data.image,
-			loading: action.loading
-		}
-	default:
-		return {
-			kind: action.type,
-			image: "",
-			loading: action.loading
-		}
+	switch (action.type) {
+		case 'dog':
+			return {
+				kind: action.type,
+				image: action.data.message,
+				loading: action.loading
+			}
+		case 'cat':
+			return {
+				kind: action.type,
+				image: action.data.file,
+				loading: action.loading
+			}
+		case 'fox':
+			return {
+				kind: action.type,
+				image: action.data.image,
+				loading: action.loading
+			}
+		default:
+			return {
+				kind: action.type,
+				image: "",
+				loading: action.loading
+			}
 	}
 }
 
@@ -56,7 +56,7 @@ const animalApiMap = {
  * @return [index: int, value: string]
 */
 function getRandomSelectForOne(array) {
-	const index = Math.floor(Math.random() * Math.floor(array.length))	
+	const index = Math.floor(Math.random() * Math.floor(array.length))
 	return [index, array[index]];
 }
 
@@ -74,8 +74,8 @@ const AnimalImagePrinter = () => {
 	const [duration, setDuration] = useState(5000)
 	const [durationUnSettled, setDurationUnSetteled] = useState(5000)
 
-	useEffect(()=>{
-		let tim = setInterval(()=>{
+	useEffect(() => {
+		let tim = setInterval(() => {
 			const animalApiMapKeys = Object.keys(animalApiMap)
 			const [, animalKind] = getRandomSelectForOne(animalApiMapKeys)
 			const [, apiPath] = getRandomSelectForOne(animalApiMap[animalKind])
@@ -87,20 +87,20 @@ const AnimalImagePrinter = () => {
 					loading: false
 				})
 			})
-			dispatch({type: "", data: null, loading: true})
+			dispatch({ type: "", data: null, loading: true })
 		}, duration)
 
 		return () => {
 			clearInterval(tim)
 		}
 	}, [duration])
-	
+
 	return (
 		<>
 			<span>
 				<p>今の表示間隔は、「{duration}」です</p>
-				<input value={durationUnSettled} onChange={e=> {setDurationUnSetteled(e.target.value)}} />
-				<button onClick={()=>{
+				<input value={durationUnSettled} onChange={e => { setDurationUnSetteled(e.target.value) }} />
+				<button onClick={() => {
 					if (durationUnSettled < 2000) {
 						setDuration(2000)
 						setDurationUnSetteled(2000)
@@ -109,7 +109,7 @@ const AnimalImagePrinter = () => {
 					}
 				}}>決定</button>
 			</span>
-			{	animal.loading ?<h1>Loading...</h1>:
+			{animal.loading ? <h1>Loading...</h1> :
 				<>
 					<h1>{animal.kind}</h1>
 					<img src={animal.image} widh="400" height="400" />
