@@ -1,6 +1,21 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import axios from 'axios'
 
+/**
+ * レデューサー
+ * 
+ * state: {
+ * 	kind: 動物種類
+ *  image: 動物の画像URL
+ *  loading: ローディングの表示有無（true: 表示／false: 非表示）
+ * }
+ * 
+ * action: {
+ * 	type: 動物種類
+ * 	data: レスポンスのデータ
+ * 	loading: ローディングの表示有無（true: 表示／false: 非表示）
+ * }
+ */
 const reducer = (state, action) => {
 	switch(action.type) {
 	case 'dog':
@@ -50,7 +65,12 @@ function getRandomSelectForOne(array) {
  * 5秒おきに、「犬」、「猫」、「狐」の画像を表示します
  */
 const AnimalImagePrinter = () => {
-	const [animal, dispatch] = useReducer(reducer, {image: '', loading: true})
+	const initState = {
+		kind: '',
+		image: '',
+		loading: true
+	}
+	const [animal, dispatch] = useReducer(reducer, initState)
 	const [duration, setDuration] = useState(5000)
 	const [durationUnSettled, setDurationUnSetteled] = useState(5000)
 
