@@ -15,7 +15,7 @@ import axios from 'axios'
  * 	data: レスポンスのデータ
  * 	loading: ローディングの表示有無（true: 表示／false: 非表示）
  * }
- */
+*/
 const reducer = (state, action) => {
 	switch(action.type) {
 	case 'dog':
@@ -54,7 +54,7 @@ const animalApiMap = {
 /**
  * getRandomSelectForOne(Array)
  * @return [index: int, value: string]
- */
+*/
 function getRandomSelectForOne(array) {
 	const index = Math.floor(Math.random() * Math.floor(array.length))	
 	return [index, array[index]];
@@ -63,7 +63,7 @@ function getRandomSelectForOne(array) {
 /**
  * AnimalImagePrinter
  * 5秒おきに、「犬」、「猫」、「狐」の画像を表示します
- */
+*/
 const AnimalImagePrinter = () => {
 	const initState = {
 		kind: '',
