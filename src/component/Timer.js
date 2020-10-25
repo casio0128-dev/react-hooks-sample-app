@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
 
 function Timer() {
 	const [count, setCount] = useState(0)
@@ -14,7 +15,10 @@ function Timer() {
 	})
 
 	return (
-		<h1>time: {count}</h1>
+		<>
+			<Link to="/">back</Link>
+			<h1>time: {count}</h1>
+		</>
 	)
 }
 

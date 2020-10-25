@@ -1,4 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
+
 import axios from 'axios'
 
 /**
@@ -97,6 +99,7 @@ const AnimalImagePrinter = () => {
 
 	return (
 		<>
+			<Link to="/">back</Link>
 			<span>
 				<p>今の表示間隔は、「{duration}」です</p>
 				<input value={durationUnSettled} onChange={e => { setDurationUnSetteled(e.target.value) }} />
