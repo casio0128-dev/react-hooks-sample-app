@@ -74,7 +74,7 @@ const AnimalImagePrinter = () => {
 	}
 	const [animal, dispatch] = useReducer(reducer, initState)
 	const [duration, setDuration] = useState(5000)
-	const [durationUnSettled, setDurationUnSetteled] = useState(5000)
+	const [durationUnSettled, setDurationUnSetteled] = useState(5)
 
 	useEffect(() => {
 		let tim = setInterval(() => {
@@ -101,14 +101,14 @@ const AnimalImagePrinter = () => {
 		<>
 			<Link to="/">back</Link>
 			<span>
-				<p>今の表示間隔は、「{duration}」です</p>
+				<p>今の表示間隔は、「{duration/1000}秒」です</p>
 				<input value={durationUnSettled} onChange={e => { setDurationUnSetteled(e.target.value) }} />
 				<button onClick={() => {
-					if (durationUnSettled < 2000) {
+					if (durationUnSettled < 2) {
 						setDuration(2000)
-						setDurationUnSetteled(2000)
+						setDurationUnSetteled(2)
 					} else {
-						setDuration(durationUnSettled)
+						setDuration(durationUnSettled*1000)
 					}
 				}}>決定</button>
 			</span>
