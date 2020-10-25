@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 function Counter() {
 	const [count, setCount] = useState(0)
@@ -13,6 +14,7 @@ function Counter() {
 
   	return (
   	  <div className="App">
+			<Link to="/">back</Link>
 			<h1>{count}</h1>
 			<button onClick={increment}>increment</button>
 			<button onClick={decrement}>decrement</button>
