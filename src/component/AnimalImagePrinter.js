@@ -115,7 +115,7 @@ const AnimalImagePrinter = () => {
 			{animal.loading ? <h1>Loading...</h1> :
 				<>
 					<h1>{animal.kind}</h1>
-					<img src={animal.image} widh="400" height="400" />
+					<img src={animal.image} alt="https://purr.objects-us-east-1.dream.io/i/295916_531552919436_290500345_796062_3164864_n.jpg" widh="400" height="400" />
 				</>
 			}
 		</>
